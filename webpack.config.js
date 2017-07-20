@@ -1,17 +1,16 @@
 var path = require('path');
-var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var webpack = require('webpack');
 
 module.exports = {
-    entry: './src/main.js',
+    entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, "./release"),
         filename: "[name].js",
         chunkFilename: "[name].js",
         libraryTarget: "umd",
-        publicPath: './'
+        publicPath: '/'
     },
     module: {
         //加载器配置
@@ -31,19 +30,15 @@ module.exports = {
             ,{
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                loader: 'babel-loader'
+                loaders:['babel-loader?presets[]=es2015,presets[]=react,presets[]=stage-0'] 
             }
 
         ]
     }
-    ,externals: {
-        'jquery': 'jQuery'
-    }
     ,plugins: [
         new ExtractTextPlugin('styles.css')
         ,new HtmlWebpackPlugin({
-            template: './src/template.ejs'
+            template: './src/tpl.ejs'
         })
-        ,new webpack.optimize.ModuleConcatenationPlugin()
     ]
 }

@@ -37,5 +37,14 @@ JobsData.prototype = {
 **JobGroup**
 
 
-### coding...
+## coding...
+
+### 2017-20-10:32
+
+complete basic logic function ,without-css
+
+**todo:**
+
+- css
+- event bus
 

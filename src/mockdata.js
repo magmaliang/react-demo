@@ -2,15 +2,29 @@ module.exports = {
 	header: '招聘职位',
 	jobsGroup: [{
 		department: '工程研发部门',
-		departmentId: ''
+		departmentId: 'd1',
 		list: [{
 			id: 'a1',
 			name: 'Mac 开发工程师',
 			count: "9",
-			checked: false
+			checked: true
 		},{
 			id: 'a2',
 			name: 'iOS App 测试工程师',
+			count: "9",
+			checked: true
+		}]
+	},{
+		department: '产品设计部门',
+		departmentId: 'd2',
+		list: [{
+			id: 'a1',
+			name: '网页设计师',
+			count: "9",
+			checked: false
+		},{
+			id: 'a2',
+			name: 'ID/工业设计师',
 			count: "9",
 			checked: false
 		}]
