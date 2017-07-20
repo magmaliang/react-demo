@@ -12,6 +12,7 @@ html,body{
 			text-decoration: none;
 			float: right;
 			font-weight: bold;
+			cursor: pointer;
 		}
 	}
 	width: 400px;
@@ -30,6 +31,17 @@ html,body{
 			margin-bottom: 14px;
 			margin-top: 18px;
 			color: #fff;
+			.expand-collaps-button {
+				margin-left: 20px;
+				display: inline-block;
+				border-bottom: 2px solid #d4dbdb;
+				border-right: 2px solid #d4dbdb;
+				width: 5px;
+				height: 5px;
+				&.expand{
+					transform: rotateZ(45deg);
+				}
+			}
 		}
 		.jobs-list {
 			padding-left: 35px;

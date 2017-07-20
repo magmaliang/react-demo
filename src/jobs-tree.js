@@ -57,8 +57,9 @@ class JobGroup extends Component {
 	render(){
 		return <div className="jobs-group">
 			<div className="group-header">
-				<input type="checkbox" checked={this.state.checked} onChange={this.toggleList}/>
+				<input type="checkbox" checked={this.state.checked} onChange={this.toggleList} />
 				<span>{this.props.department}</span>
+				<div className="expand-collaps-button expand"></div>
 				<span className='count jobs-group-count'>{this.state.count}</span>
 			</div>
 			<JobList list={this.props.list} toggleRowCheck={this.props.toggleRowCheck} dId={this.props.departmentId}/>
@@ -74,37 +75,30 @@ export default class JobsTree extends Component {
 	}
 
 	clearAllCheck = () => {
-		this.props.jobsGroup.forEach((group) => {
-			group.list.forEach((item) => {item.checked = false});
-			group.clearFlag = !!!group.clearFlag;
-		})
-
+		this.props.actions.resetAllCheck && this.props.actions.resetAllCheck();
 		this.setState({});
+		
 	}
 
 	toggleList = (dId) => {
-		this.props.jobsGroup.find(x => x.departmentId === dId).list.forEach(x => {
-			x.checked = !x.checked;
-		})
+		this.props.actions.toggleList && this.props.actions.toggleList(dId);
 		this.setState({});
 	}
 
 	toggleRowCheck = (dId, rowId) => {
-		var row = this.props.jobsGroup.find(x => x.departmentId === dId).list.find(x => x.id === rowId);
-		row.checked = !row.checked;
-
+		this.props.actions.toggleRowCheck && this.props.actions.toggleRowCheck(dId, rowId);
 		this.setState({});
 	}
 
 
 	render(){
-		var groups = this.props.jobsGroup.map( (x, index) => {
+		var groups = this.props.data.jobsGroup.map( (x, index) => {
 			return <JobGroup {...x} key={index} toggleList={this.toggleList} toggleRowCheck={this.toggleRowCheck}/>
 		})
 
 		return <div className="jobs-tree">
 			<div className="jobs-tree-header">
-				<span className="header-title">{this.props.header}</span>
+				<span className="header-title">{this.props.data.header}</span>
 				<a href="javascript:void(0);" className="clear-btn" onClick={this.clearAllCheck} >清空</a>
 			</div>
 			{groups}
