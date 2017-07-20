@@ -7,6 +7,7 @@ var mkdata = {
 	jobsGroup: [{
 		department: '工程研发部门',
 		departmentId: 'd1',
+		checked: false,
 		list: [{
 			id: 'a1',
 			name: 'Mac 开发工程师',
@@ -26,6 +27,7 @@ var mkdata = {
 	},{
 		department: '产品设计部门',
 		departmentId: 'd2',
+		checked: false,
 		list: [{
 			id: 'a1',
 			name: '网页设计师',
@@ -51,14 +53,15 @@ var JobsData = function(data){
 JobsData.prototype.resetAllCheck = function(checked = false) {
 	this._groups.forEach((group) => {
 		group.list.forEach((item) => {item.checked = checked});
-		// clear-flag,indcates that clear-all-check action is dispached
-		group.clearFlag = !!!group.clearFlag;
+		group.checked = false;
 	})
 }
 
 JobsData.prototype.toggleList = function (dId) {
-	this.data.jobsGroup.find(x => x.departmentId === dId).list.forEach(x => {
-		x.checked = !x.checked;
+	var group = this._groups.find(x => x.departmentId === dId);
+	group.checked = !group.checked;
+	group.list.forEach(x => {
+		x.checked = group.checked;
 	})
 }
 
@@ -67,6 +70,12 @@ JobsData.prototype.toggleRowCheck = function(groupId, rowId) {
 
 	var item = group.list.find(x => x.id === rowId);
 	item.checked = !item.checked;
+
+	if (!group.list.find(x => x.checked === false) && group.list.length > 0) {
+		group.checked = true;
+	} else {
+		group.checked = false;
+	}
 }
 
 

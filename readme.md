@@ -1,4 +1,4 @@
-## 2017-20
+## 2017-7-20
 
 ### define data and component
 
@@ -56,7 +56,7 @@ JobsData.prototype = {
 
 ## coding 过程记录
 
-### 2017-20-20:32
+### 2017-7-20 20:32
 
 complete basic logic function ,without-css
 
@@ -65,7 +65,7 @@ complete basic logic function ,without-css
 - css
 - event bus
 
-### 2017-20-23:49
+### 2017-7-20 23:49
 
 base style
 
@@ -75,9 +75,13 @@ base style
 - checkbox style
 - event bus
 
-### 2017-21-01：12
+### 2017-7-21 01：12
 
 simple data model
 
 readme
+
+### 2017-7-21 01:37
+
+修复一个交互Bug: group checkbox的逻辑联动
 

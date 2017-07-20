@@ -38,26 +38,18 @@ class JobGroup extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			checked: false,
 			count: this.props.list.reduce((count, x) => count + parseInt(x.count), 0)
 		}
 	}
 
-	componentWillReceiveProps(nextProps){
-		if (this.props.clearFlag !== nextProps.clearFlag) {
-			this.setState({checked: false});
-		}
-	}
-
 	toggleList = () => {
-		this.setState({checked: !this.state.checked});
 		this.props.toggleList(this.props.departmentId);
 	}
 
 	render(){
 		return <div className="jobs-group">
 			<div className="group-header">
-				<input type="checkbox" checked={this.state.checked} onChange={this.toggleList} />
+				<input type="checkbox" checked={this.props.checked} onChange={this.toggleList} />
 				<span>{this.props.department}</span>
 				<div className="expand-collaps-button expand"></div>
 				<span className='count jobs-group-count'>{this.state.count}</span>
