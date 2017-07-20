@@ -7,12 +7,17 @@ module.exports = {
 			id: 'a1',
 			name: 'Mac 开发工程师',
 			count: "9",
-			checked: true
+			checked: false
 		},{
 			id: 'a2',
 			name: 'iOS App 测试工程师',
 			count: "9",
-			checked: true
+			checked: false
+		},{
+			id: 'a3',
+			name: 'Web 前端工程师',
+			count: "111",
+			checked: false
 		}]
 	},{
 		department: '产品设计部门',

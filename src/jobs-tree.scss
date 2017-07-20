@@ -1,0 +1,47 @@
+html,body{
+	height: 100%;
+}
+#container {
+	.jobs-tree-header {
+		.header-title {
+			color: #d4dbdb;
+			font-size: 26px;
+		}
+		.clear-btn {
+			color: #fbf8f2;
+			text-decoration: none;
+			float: right;
+			font-weight: bold;
+		}
+	}
+	width: 400px;
+	height: 100%;
+	.jobs-tree {
+		height: 100%;
+		background-color: #607d8b;
+		padding: 40px;
+	}
+	.count{
+		float: right;
+	}
+	.jobs-group {
+		.group-header {
+			color: #fbf8f2;
+			margin-bottom: 14px;
+			margin-top: 18px;
+			color: #fff;
+		}
+		.jobs-list {
+			padding-left: 35px;
+			color: #d4dbdb;
+		}
+		.jobs-group-count {
+			background-color: #516a76;
+			padding: 2px 8px 7px 8px;
+			border-radius: 10px;
+		}
+	}
+}
+input[type='checkbox'] {
+	zoom: 160%;
+}

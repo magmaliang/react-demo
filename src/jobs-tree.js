@@ -1,5 +1,6 @@
 import React ,{Component} from 'react'
 import {render} from 'react-dom';
+require('./jobs-tree.scss');
 
 class JobRow extends Component {
 	constructor(props){
@@ -12,9 +13,9 @@ class JobRow extends Component {
 
 	render(){
 		return <li>
-			<input type="checkbox" checked={this.props.checked} onClick={this.toggleCheck}/>
+			<input type="checkbox" checked={this.props.checked} onChange={this.toggleCheck}/>
 			<span>{this.props.name}</span>
-			<span>{this.props.count}</span>
+			<span className='count'>{this.props.count}</span>
 		</li>
 	}
 }
@@ -37,7 +38,14 @@ class JobGroup extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			checked: false
+			checked: false,
+			count: this.props.list.reduce((count, x) => count + parseInt(x.count), 0)
+		}
+	}
+
+	componentWillReceiveProps(nextProps){
+		if (this.props.clearFlag !== nextProps.clearFlag) {
+			this.setState({checked: false});
 		}
 	}
 
@@ -49,9 +57,9 @@ class JobGroup extends Component {
 	render(){
 		return <div className="jobs-group">
 			<div className="group-header">
-				<input type="checkbox" checked={this.state.checked} onClick={this.toggleList}/>
+				<input type="checkbox" checked={this.state.checked} onChange={this.toggleList}/>
 				<span>{this.props.department}</span>
-				<span>{this.props.count}</span>
+				<span className='count jobs-group-count'>{this.state.count}</span>
 			</div>
 			<JobList list={this.props.list} toggleRowCheck={this.props.toggleRowCheck} dId={this.props.departmentId}/>
 		</div>
@@ -68,7 +76,9 @@ export default class JobsTree extends Component {
 	clearAllCheck = () => {
 		this.props.jobsGroup.forEach((group) => {
 			group.list.forEach((item) => {item.checked = false});
+			group.clearFlag = !!!group.clearFlag;
 		})
+
 		this.setState({});
 	}
 
@@ -94,8 +104,8 @@ export default class JobsTree extends Component {
 
 		return <div className="jobs-tree">
 			<div className="jobs-tree-header">
-				<div className="header-title">{this.props.header}</div>
-				<a href="javascript:void(0);" onClick={this.clearAllCheck} >清空</a>
+				<span className="header-title">{this.props.header}</span>
+				<a href="javascript:void(0);" className="clear-btn" onClick={this.clearAllCheck} >清空</a>
 			</div>
 			{groups}
 		</div>
